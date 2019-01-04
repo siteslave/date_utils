@@ -1,6 +1,8 @@
 library utils;
 
 import "package:intl/intl.dart";
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
 
 class Utils {
   static final DateFormat _monthFormat = new DateFormat("MMMM yyyy");
@@ -9,7 +11,9 @@ class Utils {
   static final DateFormat _fullDayFormat = new DateFormat("EEE MMM dd, yyyy");
   static final DateFormat _apiDayFormat = new DateFormat("yyyy-MM-dd");
 
-  static String formatMonth(DateTime d) => _monthFormat.format(d);
+  static String formatMonth(DateTime d) => {
+    initializeDateFormatting("th_TH", null).then((_) => _monthFormat.format(d);
+  };
   static String formatDay(DateTime d) => _dayFormat.format(d);
   static String formatFirstDay(DateTime d) => _firstDayFormat.format(d);
   static String fullDayFormat(DateTime d) => _fullDayFormat.format(d);
