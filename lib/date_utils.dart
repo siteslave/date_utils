@@ -5,18 +5,36 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 
 class Utils {
-  static final DateFormat _monthFormat = new DateFormat("MMMM yyyy");
-  static final DateFormat _dayFormat = new DateFormat("dd");
-  static final DateFormat _firstDayFormat = new DateFormat("MMM dd");
-  static final DateFormat _fullDayFormat = new DateFormat("EEE MMM dd, yyyy");
+  Utils() {
+    initializeDateFormatting('th_TH', null);
+  }
+
+  static final DateFormat _monthFormat = new DateFormat.yMMM('th');
+  static final DateFormat _dayFormat = new DateFormat.d('th');
+  static final DateFormat _firstDayFormat = new DateFormat.MMMd('th');
+  static final DateFormat _fullDayFormat = new DateFormat.yMMMMEEEEd('th');
   static final DateFormat _apiDayFormat = new DateFormat("yyyy-MM-dd");
 
-  static String formatMonth(DateTime d) => {
-    initializeDateFormatting("th_TH", null).then((_) => _monthFormat.format(d);
-  };
+  static String formatMonth(DateTime d) {
+    int year = d.year + 543;
+    DateFormat format = new DateFormat.MMM('th');
+    String m = format.format(d);
+    String thDate = '$m $year';
+
+    return thDate;
+  }
+
   static String formatDay(DateTime d) => _dayFormat.format(d);
   static String formatFirstDay(DateTime d) => _firstDayFormat.format(d);
-  static String fullDayFormat(DateTime d) => _fullDayFormat.format(d);
+  static String fullDayFormat(DateTime d) {
+    int year = d.year + 543;
+    DateFormat format = new DateFormat.MMMMEEEEd('th');
+    String m = format.format(d);
+    String thDate = '$m $year';
+
+    return thDate;
+  }
+  
   static String apiDayFormat(DateTime d) => _apiDayFormat.format(d);
 
   static const List<String> weekdays = const [
